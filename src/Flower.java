@@ -10,4 +10,20 @@ public class Flower {
         this.z = z;
         this.desc = desc;
     }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getZ() {
+        return z;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
 }
