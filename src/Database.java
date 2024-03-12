@@ -26,9 +26,9 @@ public class Database {
         double counter=0;
         double checked=0;
         try (BufferedReader bf = new BufferedReader(new FileReader(path))){
-            flowerMap= new TreeMap<>();
             String line;
             while ((line=bf.readLine())!=null){
+                flowerMap= new TreeMap<>();
                 counter++;
                 String[] words = line.split(",");
                 Flower a = new Flower(Double.parseDouble(words[0]),Double.parseDouble(words[1]),Double.parseDouble(words[2]),Double.parseDouble(words[3]),words[4]);
@@ -59,17 +59,17 @@ public class Database {
     private String getMaxDescription(Map<Flower,Double> map){
         double max =0;
         String name="";
-        Map<Flower,Double> tmp= new HashMap<>();
+        Map<String,Double> tmp= new HashMap<>();
         for (Map.Entry<Flower,Double> i : map.entrySet()){
-            if (!tmp.containsKey(i.getKey()))
-                tmp.put(i.getKey(),1.0);
+            if (!tmp.containsKey(i.getKey().getDesc())) //źle porównuje kwiatki
+                tmp.put(i.getKey().getDesc(),1.0);
             else
-                tmp.replace(i.getKey(),tmp.get(i.getKey()),tmp.get(i.getKey())+1);
+                tmp.replace(i.getKey().getDesc(),tmp.get(i.getKey().getDesc()),tmp.get(i.getKey().getDesc())+1);
         }
-        for (Map.Entry<Flower,Double> e : tmp.entrySet()){
+        for (Map.Entry<String,Double> e : tmp.entrySet()){
                 if (e.getValue()>max) {
                     max=e.getValue();
-                    name=e.getKey().getDesc();
+                    name=e.getKey();
                 }
             }
         return name;
