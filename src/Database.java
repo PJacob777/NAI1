@@ -74,5 +74,24 @@ public class Database {
             }
         return name;
         }
+
+    public String findNameOfFlower(double v, double v1, double v2, double v3) {
+            flowerMap= new HashMap<>();
+            for (Flower i : flowers){
+                flowerMap.put(Math.sqrt(Math.pow((v-i.getX()),2)+Math.pow((v1-i.getY()),2)+Math.pow((v2-i.getZ()),2)+Math.pow((v3-i.getP()),2)),i);
+            }
+        Map<Flower,Double> tmp = new HashMap<>();
+        Set<Map.Entry<Double,Flower>> entries= flowerMap.entrySet();
+        Iterator<Map.Entry<Double,Flower>> iterator = entries.iterator();
+        for(int i =0; i <k && iterator.hasNext();i++){
+            Map.Entry<Double,Flower> entry = iterator.next();
+            if(!tmp.containsKey(entry.getValue()))
+                tmp.put(entry.getValue(),entry.getKey());
+            else {
+                tmp.replace(entry.getValue(),entry.getKey(),entry.getKey()+1);
+            }
+        }
+        return getMaxDescription(tmp);
     }
+}
 
