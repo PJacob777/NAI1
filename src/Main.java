@@ -11,10 +11,14 @@ public class Main {
         if(ans.equals("N"))
             System.out.println(database.calculatingVectors("TestSet.txt"));
         else {
-            System.out.println("Podaj wspolzedne wektora oddzielone przecinkami ");
-            String vec = scanner.next();
-            String[] tmp = vec.split(",");
-            System.out.println("Twoj kwiatek to " +database.findNameOfFlower(Double.parseDouble(tmp[0]),Double.parseDouble(tmp[1]),Double.parseDouble(tmp[2]),Double.parseDouble(tmp[3])));
+            do {
+                System.out.println("Podaj wspolzedne wektora oddzielone przecinkami ");
+                String vec = scanner.next();
+                String[] tmp = vec.split(",");
+                System.out.println("Twoj kwiatek to " + database.findNameOfFlower(Double.parseDouble(tmp[0]), Double.parseDouble(tmp[1]), Double.parseDouble(tmp[2]), Double.parseDouble(tmp[3])));
+                System.out.println("Czy chcesz kontynuowac ?");
+            }while (!scanner.next().equals("N"));
+            scanner.close();
         }
     }
 }
